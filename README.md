@@ -26,6 +26,43 @@ for (var i = 0; i < arr.length; i++) {
 
     Save calculation time with a cache.
 
+- Normal fibonacci without caching
+```
+const fib = n => (n < 2) ? n : fib(n - 1) + fib(n - 2)
+```
+
+- fibonacci with memoization
+```
+const fibMemoize = (() => {
     
+    const cache = {}
+    
+    const f = n => {
+        
+        const value = (n in cache)
+            ? cache[n]
+            : (n < 2) ? n : f(n - 1) + f(n - 2)
+        
+        if (!(n in cache)) cache[n] = value
+        
+        return value
+        
+    }
+    
+    return f
+    
+})()
+```
+
+## React
+
+1.  List the phases of the React component lifecycle
+    
+    Describe each phase in 1-2 sentences in your own words.
+
+- A react component will go throught the following phases:
   
-  
+    - Mounting
+      - During the mounting phase, 
+    - Updating
+    - Unmounting
