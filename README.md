@@ -61,8 +61,21 @@ const fibMemoize = (() => {
     Describe each phase in 1-2 sentences in your own words.
 
 - A react component will go throught the following phases:
-  
+
     - Mounting
-      - During the mounting phase, 
-    - Updating
+        - During the mounting phase, the following methods are called in order,
+            - the constructor()
+            - then the static getDerivedStateFromProps()
+            - then the render()
+            - componentDidMount()
+    - Updating (When there are changes to props or state)
+        - The following methods are called in order,
+            - static getDerivedStateFromProps()
+            - shouldComponentUpdate()
+            - render()
+            - getSnapshotBeforeUpdate()
+            - componentDidUpdate()
     - Unmounting
+        - This method is called when a component is being removed from the DOM,
+            - componentWillUnmount()
+
