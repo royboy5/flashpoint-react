@@ -21,6 +21,7 @@ for (var i = 0; i < arr.length; i++) {
 3. How would you compare two objects in JavaScript?
 
 - I would use lodash `_.isEqual()` =)
+- 
   
 4.  Implement a recursive fibonacci function
 
@@ -78,4 +79,42 @@ const fibMemoize = (() => {
     - Unmounting
         - This method is called when a component is being removed from the DOM,
             - componentWillUnmount()
+
+2. What is the role of the reducer in Redux?
+
+- In redux, the reducer specifies how the application state changes in response to the actions sent to the redux store.
+
+3. Show how you would embed 2+ components into one in React
+
+- I am not completely sure what is expected with this question, however, you can have the following 2 files,
+    - Foo.jsx
+    ```
+    import React from 'react';
+
+    const Foo = () => <div>Foo</div>;
+
+    export default Foo;
+    ```
+
+    - Bar.jsx
+    ```
+    import React from 'react';
+    import Foo from './Foo';
+
+    const Bar = () => {
+        return (
+            <div>
+                <h1>Title</h1>
+                <Foo />
+                <Foo />
+                ...
+                <Foo />
+            </div>
+        );
+    }
+
+    export default Bar;
+    ```
+
+
 
