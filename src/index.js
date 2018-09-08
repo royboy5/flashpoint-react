@@ -25,4 +25,4 @@ const App = () => (
   </Provider>
 )
 
-render(<App />, document.querySelector('#app'))
+render(<App />, document.querySelector('#root'))

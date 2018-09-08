@@ -1,8 +1,17 @@
 import styles from './home.css'
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-const Home = () => {
-  return <div className={styles.home}>Home</div>
+class Home extends Component {
+  render () {
+    return <div className={styles.home}>HOME</div>
+  }
 }
 
-export default Home
+function mapStateToProps (state) {
+  return {
+    articles: state.articles
+  }
+}
+
+export default connect(mapStateToProps)(Home)
