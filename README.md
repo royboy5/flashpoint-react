@@ -21,7 +21,7 @@ for (var i = 0; i < arr.length; i++) {
 3. How would you compare two objects in JavaScript?
 
 - I would use lodash `_.isEqual()` =)
-- 
+- Otherwise, I would need to create a function that will compare every property and see if they are equal.  Also, if a property is also an object, there needs to be a deeper check for each property that is an object.  
   
 4.  Implement a recursive fibonacci function
 
