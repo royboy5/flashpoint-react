@@ -27,7 +27,7 @@ class Home extends Component {
   componentDidMount () {
     const { searchTopics } = this.props
 
-    searchTopics(0, 'architecture', null, null, false)
+    searchTopics(0, 'architecture')
   }
 
   closePopup () {
@@ -58,8 +58,6 @@ class Home extends Component {
   handleArticleBtn (article) {
     const { currentArticle } = this.props
 
-    console.log(article, 'current article')
-
     currentArticle(article)
 
     this.setState({
@@ -77,16 +75,14 @@ class Home extends Component {
         currentCount - 10,
         query,
         beforeAfter,
-        direction,
-        false
+        direction
       )
     } else {
       this.props.searchTopics(
         currentCount + 10,
         query,
         beforeAfter,
-        direction,
-        false
+        direction
       )
     }
   }
@@ -94,8 +90,6 @@ class Home extends Component {
   render () {
     const { articles, searchTopics, current } = this.props
     const { openPopup } = this.state
-
-    console.log(this.props, 'home')
 
     if (_.isEmpty(articles)) {
       return <div>loading...</div>

@@ -11,8 +11,7 @@ export const searchTopics = (
   count,
   query,
   queryFrom,
-  direction,
-  showAll
+  direction
 ) => async dispatch => {
   const search = query.toLowerCase().replace(/ /g, '+')
   let URL = `${ROOT_URL}/search.json?q=${search}&limit=${LIMIT}&count=${count}`
@@ -27,7 +26,7 @@ export const searchTopics = (
     URL = `${URL}&after=${queryFrom}`
   }
 
-  console.log(URL, 'action')
+  // console.log(URL, 'action')
 
   const res = await axios.get(URL)
 
@@ -37,7 +36,6 @@ export const searchTopics = (
       query,
       count,
       queryFrom,
-      showAll,
       data: res.data.data
     }
   })
