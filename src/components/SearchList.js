@@ -14,36 +14,36 @@ const SearchList = props => {
     <div className='search-list'>
       <Searchbar searchTerm={clickHandler} />
       <ButtonGroup minimal fill vertical>
-        <Button minimal onClick={() => clickHandler('Architecture')}>
+        <Button minimal onClick={() => clickHandler(0, 'Architecture')}>
           Architecture
         </Button>
-        <Button onClick={() => clickHandler('Art')}>Art</Button>
-        <Button onClick={() => clickHandler('Business')}>Business</Button>
-        <Button onClick={() => clickHandler('Education')}>Education</Button>
-        <Button onClick={() => clickHandler('Entertainment')}>
+        <Button onClick={() => clickHandler(0, 'Art')}>Art</Button>
+        <Button onClick={() => clickHandler(0, 'Business')}>Business</Button>
+        <Button onClick={() => clickHandler(0, 'Education')}>Education</Button>
+        <Button onClick={() => clickHandler(0, 'Entertainment')}>
           Entertainment
         </Button>
-        <Button onClick={() => clickHandler('Gaming')}>Gaming</Button>
-        <Button onClick={() => clickHandler('General')}>General</Button>
-        <Button onClick={() => clickHandler('Hobbies and Interests')}>
+        <Button onClick={() => clickHandler(0, 'Gaming')}>Gaming</Button>
+        <Button onClick={() => clickHandler(0, 'General')}>General</Button>
+        <Button onClick={() => clickHandler(0, 'Hobbies and Interests')}>
           Hobbies and Interests
         </Button>
-        <Button onClick={() => clickHandler('Law')}>Law</Button>
-        <Button onClick={() => clickHandler('Lifestyle')}>Lifestyle</Button>
-        <Button onClick={() => clickHandler('Locations')}>Locations</Button>
-        <Button onClick={() => clickHandler('Meta')}>Meta</Button>
-        <Button onClick={() => clickHandler('Music')}>Music</Button>
-        <Button onClick={() => clickHandler('News and Politics')}>
+        <Button onClick={() => clickHandler(0, 'Law')}>Law</Button>
+        <Button onClick={() => clickHandler(0, 'Lifestyle')}>Lifestyle</Button>
+        <Button onClick={() => clickHandler(0, 'Locations')}>Locations</Button>
+        <Button onClick={() => clickHandler(0, 'Meta')}>Meta</Button>
+        <Button onClick={() => clickHandler(0, 'Music')}>Music</Button>
+        <Button onClick={() => clickHandler(0, 'News and Politics')}>
           News and Politics
         </Button>
-        <Button onClick={() => clickHandler('Science')}>Science</Button>
-        <Button onClick={() => clickHandler('Social Science and Humanities')}>
+        <Button onClick={() => clickHandler(0, 'Science')}>Science</Button>
+        <Button onClick={() => clickHandler(0, 'Social Science and Humanities')}>
           Social Science and Humanities
         </Button>
-        <Button onClick={() => clickHandler('Sports')}>Sports</Button>
-        <Button onClick={() => clickHandler('Technology')}>Technology</Button>
-        <Button onClick={() => clickHandler('Travel')}>Travel</Button>
-        <Button onClick={() => clickHandler('Other')}>Other</Button>
+        <Button onClick={() => clickHandler(0, 'Sports')}>Sports</Button>
+        <Button onClick={() => clickHandler(0, 'Technology')}>Technology</Button>
+        <Button onClick={() => clickHandler(0, 'Travel')}>Travel</Button>
+        <Button onClick={() => clickHandler(0, 'Other')}>Other</Button>
       </ButtonGroup>
     </div>
   )

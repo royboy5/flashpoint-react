@@ -1,3 +1,17 @@
 .home {
   display: flex;
+
+  .search-list {
+    flex: 0 0 auto;  
+  }
+
+  .content {
+    // flex: 0 1 auto;
+    margin-top: 5rem;
+    margin-right: 5rem;
+
+    &__list {
+      margin-bottom: 5rem;
+    }
+  }
 }

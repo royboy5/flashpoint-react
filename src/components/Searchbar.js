@@ -78,7 +78,7 @@ class Searchbar extends Component {
         />
         <Button
           icon='arrow-right'
-          onClick={() => this.props.searchTerm(this.state.value, null, false)}
+          onClick={() => this.props.searchTerm(0, this.state.value)}
           minimal
         />
       </div>
