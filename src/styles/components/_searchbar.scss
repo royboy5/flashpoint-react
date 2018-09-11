@@ -1,0 +1,42 @@
+.searchbar {
+  margin-bottom: 2rem;
+
+  .react-autosuggest__input {
+    padding-left: 3rem;
+    width: 100%;
+    outline: none;
+    height: 3rem;
+    border: 1px solid gray;
+  }
+
+  .react-autosuggest__container {
+    position: relative;
+  }
+
+  .react-autosuggest__suggestions-container {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    z-index: 5;
+
+    &--open {
+      border: 1px solid black;
+    }
+  }
+
+  .react-autosuggest__suggestions-list {
+    list-style-type: none;
+
+  }
+  .react-autosuggest__suggestion {
+    padding: .5rem 1rem;
+
+    &--highlighted {
+      background-color: grey;
+    }
+  }
+
+  .bp3-button.bp3-minimal:hover {
+    background: transparent;
+  }
+}
