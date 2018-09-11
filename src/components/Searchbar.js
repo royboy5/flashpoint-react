@@ -59,6 +59,10 @@ class Searchbar extends Component {
     e.preventDefault()
 
     this.props.searchTerm(0, this.state.value)
+
+    this.setState({
+      value: ''
+    })
   }
 
   render () {
