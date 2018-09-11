@@ -25,6 +25,7 @@ class Searchbar extends Component {
       this
     )
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
   }
 
   onChange (event, { newValue }) {
@@ -54,6 +55,12 @@ class Searchbar extends Component {
     })
   }
 
+  submitHandler (e) {
+    e.preventDefault()
+
+    this.props.searchTerm(0, this.state.value)
+  }
+
   render () {
     const { value, suggestions } = this.state
 
@@ -65,7 +72,7 @@ class Searchbar extends Component {
     }
 
     return (
-      <div className='searchbar bp3-input-group'>
+      <form onSubmit={this.submitHandler} className='searchbar bp3-input-group'>
         <span className='bp3-icon bp3-icon-search' />
         <Autosuggest
           suggestions={suggestions}
@@ -78,10 +85,10 @@ class Searchbar extends Component {
         />
         <Button
           icon='arrow-right'
-          onClick={() => this.props.searchTerm(0, this.state.value)}
+          onClick={this.submitHandler}
           minimal
         />
-      </div>
+      </form>
     )
   }
 }
