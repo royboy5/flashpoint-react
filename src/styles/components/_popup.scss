@@ -1,0 +1,14 @@
+.popup {
+  padding: 1rem 5rem;
+
+  &__close {
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}

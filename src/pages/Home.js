@@ -2,11 +2,11 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Button, ButtonGroup } from '@blueprintjs/core'
 
-import { searchTopics } from '../actions'
+import { searchTopics, currentArticle } from '../actions'
 import SearchList from '../components/SearchList'
+import Popup from '../components/Popup'
 
 import { sortByPoints } from '../utils/sort'
 
@@ -15,11 +15,25 @@ class Home extends Component {
     super(props)
 
     this.renderList = this.renderList.bind(this)
-    this.handleBtn = this.handleBtn.bind(this)
+    this.handlePaginationBtn = this.handlePaginationBtn.bind(this)
+    this.handlePaginationBtn = this.handlePaginationBtn.bind(this)
+    this.closePopup = this.closePopup.bind(this)
+
+    this.state = {
+      openPopup: false
+    }
   }
 
   componentDidMount () {
-    this.props.searchTopics(0, 'architecture', null, null, false)
+    const { searchTopics } = this.props
+
+    searchTopics(0, 'architecture', null, null, false)
+  }
+
+  closePopup () {
+    this.setState({
+      openPopup: false
+    })
   }
 
   renderList () {
@@ -27,16 +41,33 @@ class Home extends Component {
 
     return articles.data.children.sort(sortByPoints).map(article => {
       return (
-        <li key={article.data.id} className='content__item'>
-          <Link to='/' className='content__title'>
-            {article.data.ups - article.data.downs} - {article.data.title}
-          </Link>
-        </li>
+        <Button
+          key={article.data.id}
+          className='content__item'
+          onClick={() => this.handleArticleBtn(article)}
+          fill
+          minimal
+          alignText='left'
+        >
+          {article.data.ups - article.data.downs} - {article.data.title}
+        </Button>
       )
     })
   }
 
-  handleBtn (direction, query, beforeAfter) {
+  handleArticleBtn (article) {
+    const { currentArticle } = this.props
+
+    console.log(article, 'current article')
+
+    currentArticle(article)
+
+    this.setState({
+      openPopup: true
+    })
+  }
+
+  handlePaginationBtn (direction, query, beforeAfter) {
     const { articles } = this.props
 
     let currentCount = articles.count
@@ -61,7 +92,8 @@ class Home extends Component {
   }
 
   render () {
-    const { articles, searchTopics } = this.props
+    const { articles, searchTopics, current } = this.props
+    const { openPopup } = this.state
 
     console.log(this.props, 'home')
 
@@ -81,7 +113,11 @@ class Home extends Component {
               <Button
                 className='content__btn-prev'
                 onClick={() =>
-                  this.handleBtn('prev', articles.query, articles.data.before)
+                  this.handlePaginationBtn(
+                    'prev',
+                    articles.query,
+                    articles.data.before
+                  )
                 }
                 icon='arrow-left'
                 text={'Previous'}
@@ -91,7 +127,11 @@ class Home extends Component {
               <Button
                 className='content__btn-next'
                 onClick={() =>
-                  this.handleBtn('next', articles.query, articles.data.after)
+                  this.handlePaginationBtn(
+                    'next',
+                    articles.query,
+                    articles.data.after
+                  )
                 }
                 rightIcon='arrow-right'
                 text={'Next'}
@@ -99,6 +139,13 @@ class Home extends Component {
             )}
           </ButtonGroup>
         </article>
+        {!_.isEmpty(current) && (
+          <Popup
+            showPopup={openPopup}
+            closePopup={this.closePopup}
+            content={current.data}
+          />
+        )}
       </div>
     )
   }
@@ -106,16 +153,19 @@ class Home extends Component {
 
 Home.propTypes = {
   articles: PropTypes.instanceOf(Object).isRequired,
-  searchTopics: PropTypes.func.isRequired
+  current: PropTypes.instanceOf(Object),
+  searchTopics: PropTypes.func.isRequired,
+  currentArticle: PropTypes.func.isRequired
 }
 
 function mapStateToProps (state) {
   return {
-    articles: state.articles
+    articles: state.articles,
+    current: state.current
   }
 }
 
 export default connect(
   mapStateToProps,
-  { searchTopics }
+  { searchTopics, currentArticle }
 )(Home)
