@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const SEARCH_TOPICS = 'search_topics'
 export const CURRENT_ARTICLE = 'current_article'
+export const AUTOCOMPLETE_LIST = 'autocomplete_list'
 
 const ROOT_URL = 'https://www.reddit.com'
 const LIMIT = 10
@@ -41,9 +42,22 @@ export const searchTopics = (
   })
 }
 
-export const currentArticle = (current) => dispatch => {
+export const currentArticle = current => dispatch => {
   dispatch({
     type: CURRENT_ARTICLE,
     payload: current
+  })
+}
+
+export const autocompleteList = () => async dispatch => {
+  const URL = `${ROOT_URL}/subreddits/popular.json`
+
+  const res = await axios.get(URL)
+
+  // console.log(res)
+
+  dispatch({
+    type: AUTOCOMPLETE_LIST,
+    payload: res.data.data.children
   })
 }

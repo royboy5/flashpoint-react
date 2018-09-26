@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from '@blueprintjs/core'
 import Autosuggest from 'react-autosuggest'
+import { connect } from 'react-redux'
+import { autocompleteList } from '../actions'
 
 import {
   getSuggestions,
@@ -28,6 +30,11 @@ class Searchbar extends Component {
     this.submitHandler = this.submitHandler.bind(this)
   }
 
+  componentDidMount () {
+    const { autocompleteList } = this.props
+    autocompleteList()
+  }
+
   onChange (event, { newValue }) {
     this.setState({
       value: newValue
@@ -38,7 +45,7 @@ class Searchbar extends Component {
   // You already implemented this logic above, so just use it.
   onSuggestionsFetchRequested ({ value }) {
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value, this.props.autocomplete)
     })
   }
 
@@ -68,6 +75,8 @@ class Searchbar extends Component {
   render () {
     const { value, suggestions } = this.state
 
+    console.log(this.props, 'searchbar')
+
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: 'Search Reddit...',
@@ -87,18 +96,25 @@ class Searchbar extends Component {
           inputProps={inputProps}
           className='bp3-input'
         />
-        <Button
-          icon='arrow-right'
-          onClick={this.submitHandler}
-          minimal
-        />
+        <Button icon='arrow-right' onClick={this.submitHandler} minimal />
       </form>
     )
   }
 }
 
-Searchbar.propTypes = {
-  searchTerm: PropTypes.func.isRequired
+function mapStateToProps (state) {
+  return {
+    autocomplete: state.autocomplete
+  }
 }
 
-export default Searchbar
+Searchbar.propTypes = {
+  searchTerm: PropTypes.func.isRequired,
+  autocompleteList: PropTypes.func.isRequired,
+  autocomplete: PropTypes.instanceOf(Object).isRequired
+}
+
+export default connect(
+  mapStateToProps,
+  { autocompleteList }
+)(Searchbar)
